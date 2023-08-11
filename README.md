@@ -74,6 +74,7 @@ var filteredLocations = _unitOfWork.Locations.Filter(l => l.Name = "Cairo", n =>
 var filteredLocations = _unitOfWork.Locations.Filter(l => l.Name = "Cairo", n => n.Include(p => p.WorkingHours).Inclue(p => p.Image));
 // More examples of filtering and customization
 var filteredEntities = repository.Filter(e => e.SomeProperty == someValue, orderBy: e => e.OrderBy(x => x.AnotherProperty));
+```
 
 ## Contributing
 
