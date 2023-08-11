@@ -1,4 +1,4 @@
-﻿namespace Utils.REPO
+﻿namespace Utils.REPO.Interfaces
 {
     public interface IGenericRepo<T> where T : class
     {

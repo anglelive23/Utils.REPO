@@ -1,4 +1,4 @@
-﻿namespace Utils.REPO
+﻿namespace Utils.REPO.Repos
 {
     public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
