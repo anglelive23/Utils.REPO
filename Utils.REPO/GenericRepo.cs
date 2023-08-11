@@ -257,11 +257,6 @@
         #endregion
 
         #region Post
-        public T Post(T entity)
-        {
-            _context.Set<T>().Add(entity);
-            return entity;
-        }
         public async Task<T> PostAsync(T entity)
         {
             if (entity is null)

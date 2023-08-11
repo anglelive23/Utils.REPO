@@ -121,7 +121,6 @@
         #endregion
 
         #region Post
-        T Post(T entity);
         Task<T> PostAsync(T entity);
         #endregion
 
