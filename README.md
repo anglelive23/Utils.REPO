@@ -49,7 +49,7 @@ Here's an example of how to use the generic repository methods:
         public IGenericRepo<Location> Locations { get; private set; }
         #endregion
 
-        public UnitOfWork(TravelToursContext context)
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             Locations = new GenericRepo<Location>(_context);
