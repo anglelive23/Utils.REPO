@@ -33,7 +33,7 @@ Here's an example of how to use the generic repository methods:
         #endregion
 
         #region
-        bool Save();
+        Task<bool> Save();
         #endregion
     }
 
@@ -54,7 +54,7 @@ Here's an example of how to use the generic repository methods:
             _context = context ?? throw new ArgumentNullException(nameof(context));
             Locations = new GenericRepo<Location>(_context);
         }
-        public bool Save()
+        public async Task<bool> Save()
         {
             return await _context.SaveChangesAsync() > 0;
         }
