@@ -63,17 +63,24 @@ Here's an example of how to use the generic repository methods:
             _context.Dispose();
         }
     }
+
 // Register IUnitOfWork on your program.cs
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-// Perform CRUD operations
+// you can query a table like
 var locations = _unitOfWork.Locations.GetAll();
+
+// Perform searching
+var location = await _unitOfWork.Locations.FindAsync(l => l.Id == 3);
+
+// Perform searching and include navigation property
+var location = await _unitOfWork.Locations.FindAsync(l => l.Id == 3, n => n.Include(p => p.Image));
+
 // Perform filtering and include navigation property
 var filteredLocations = _unitOfWork.Locations.Filter(l => l.Name = "Cairo", n => n.Include(p => p.WorkingHours));
+
 // You can chain navigation properties like
 var filteredLocations = _unitOfWork.Locations.Filter(l => l.Name = "Cairo", n => n.Include(p => p.WorkingHours).Inclue(p => p.Image));
-// More examples of filtering and customization
-var filteredEntities = repository.Filter(e => e.SomeProperty == someValue, orderBy: e => e.OrderBy(x => x.AnotherProperty));
 ```
 
 ## Contributing
