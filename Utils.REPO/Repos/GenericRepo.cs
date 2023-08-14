@@ -182,6 +182,28 @@
 
             return await query.FirstOrDefaultAsync(predicate);
         }
+
+        /// <summary>
+        /// Checks if any entities in the database context satisfy the specified predicate.
+        /// </summary>
+        /// <param name="predicate">A predicate to match entities against.</param>
+        /// <returns>True if any matching entity exists, otherwise false.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the predicate is null.</exception>
+        /// <exception cref="DataAccessErrorException">Thrown when an error occurs during database access.</exception>
+        public bool AnyMatching(Expression<Func<T, bool>> predicate)
+        {
+            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate), "predicate cannot be null!");
+            try
+            {
+                return _context.Set<T>()
+                    .Any(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessErrorException(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
         #endregion
 
         #region Filter

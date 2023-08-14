@@ -87,6 +87,15 @@
         /// <param name="includeNavigationProperties">Optional delegate to include navigation properties in the query.</param>
         /// <returns>A task representing the asynchronous operation. The task result contains the entity matching the predicate, or null if not found.</returns>
         Task<T?> FindAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IQueryable<T>>? includeNavigationProperties = null);
+
+        /// <summary>
+        /// Checks if any entities in the database context satisfy the specified predicate.
+        /// </summary>
+        /// <param name="predicate">A predicate to match entities against.</param>
+        /// <returns>True if any matching entity exists, otherwise false.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the predicate is null.</exception>
+        /// <exception cref="DataAccessErrorException">Thrown when an error occurs during database access.</exception>
+        bool AnyMatching(Expression<Func<T, bool>> predicate);
         #endregion
 
         #region Filtering
