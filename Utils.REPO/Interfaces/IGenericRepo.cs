@@ -96,6 +96,17 @@
         /// <exception cref="ArgumentNullException">Thrown when the predicate is null.</exception>
         /// <exception cref="DataAccessErrorException">Thrown when an error occurs during database access.</exception>
         bool AnyMatching(Expression<Func<T, bool>> predicate);
+
+        /// <summary>
+        /// Asynchronously checks if any entities in the database context satisfy the specified predicate.
+        /// </summary>
+        /// <param name="predicate">A predicate to match entities against.</param>
+        /// <returns>
+        /// A task representing the asynchronous operation. The task result is true if any matching entity exists, otherwise false.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">Thrown when the predicate is null.</exception>
+        /// <exception cref="DataAccessErrorException">Thrown when an error occurs during database access.</exception>
+        Task<bool> AnyMatchingAsync(Expression<Func<T, bool>> predicate);
         #endregion
 
         #region Filtering
